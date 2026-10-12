@@ -58,12 +58,7 @@ SELECT
     21 AS domain_id,
     --id,
     a.patientid AS person_id,
-    CASE a.weightsource
-      WHEN 'Geschat' THEN 3026600 --Body weight Estimated
-      WHEN 'Gemeten' THEN 3013762 --Body weight Measured
-      WHEN 'Anamnestisch' THEN  3023166 --Body weight Stated
-      ELSE 3025315 --Body weight
-    END AS concept_id,
+    4099154 AS concept_id, --SNOMED Body weight
     DATE(a.admissiondatetime) AS start_date,
     a.admissiondatetime AS start_datetime,
     NULL AS end_date,
