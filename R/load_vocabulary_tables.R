@@ -42,7 +42,7 @@ load_vocabulary_tables <-
     ordered_file_list = c()
 
     for (csv in csv_list) {
-      matched <- match(csv, tolower(file_list))
+      matched <- match(paste0(csv, ".gz"), tolower(file_list))
       ordered_file_list <- c(ordered_file_list, file_list[matched])
     }
 
