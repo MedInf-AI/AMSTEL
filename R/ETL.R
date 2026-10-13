@@ -72,7 +72,7 @@ etl <- function(vocabulary = TRUE, mappings = TRUE,
   apply_corrections()
 
   # Create example AmsterdamUMCdb cohort tables (mechanical ventilation)
-  create_cohort_tables()
+  # create_cohort_tables()
 
   # Runs OHDSI Data Quality Dashboard data quality checks
   if (dqd == TRUE) {

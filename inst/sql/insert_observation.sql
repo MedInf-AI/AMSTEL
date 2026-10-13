@@ -50,5 +50,5 @@ SELECT
 
 FROM @cdm_schema.stem_table
 WHERE stem_table.domain_id = 27 -- Observation
-      AND stem_table.concept_id IN (4215838, 4231838, 604877, 2100000009, 36685263, 37164964, 37168078, 4089048, 4247376, 45877806, 2100000008)
+      AND stem_table.concept_id IN (4215838, 4231838, 604877, 36685263, 37164964, 37168078, 4089048, 4247376, 45877806)
 ;
