@@ -50,5 +50,6 @@ SELECT
 
 FROM @cdm_schema.stem_table
 WHERE stem_table.domain_id = 27 -- Observation
-      AND stem_table.concept_id IN (4215838, 4231838, 604877, 36685263, 37164964, 37168078, 4089048, 4247376, 45877806)
-;
+      AND stem_table.concept_id IN (SELECT concept_id
+                                    FROM @cdm_schema.cql_concept
+                                    WHERE cdm_table = 'observation');

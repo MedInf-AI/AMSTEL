@@ -40,4 +40,6 @@ SELECT
 
 FROM @cdm_schema.stem_table
 WHERE stem_table.domain_id = 19 -- Condition
-      AND stem_table.concept_id in (259992, 764921, 764924, 4149606, 4195694, 4326841, 42537216, 43021261);
+      AND stem_table.concept_id IN (SELECT concept_id
+                                    FROM @cdm_schema.cql_concept
+                                    WHERE cdm_table = 'condition_occurrence');

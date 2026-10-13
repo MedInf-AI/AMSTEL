@@ -44,8 +44,6 @@ WHERE
   AND (
     stem_table.quantity > 0 OR stem_table.quantity IS NULL
   )
-  AND stem_table.concept_id IN (1242274, 4012607, 4040262, 4049846, 4051326, 4051329, 4051330, 4055375,
-                                4072515, 4148972, 4150627, 4158838, 4204159, 4245036, 4308797, 37016972,
-                                37152363, 37152364, 37152384, 37152385, 37152386, 37152387, 37152388, 37152389,
-                                37152390, 37152408, 37152409, 37152410, 37152411, 37152412, 37158404, 40491848,
-                                46271857, 46271859, 46272439, 46272440, 46272565);
+  AND stem_table.concept_id IN (SELECT concept_id
+                                FROM @cdm_schema.cql_concept
+                                WHERE cdm_table = 'procedure_occurrence');

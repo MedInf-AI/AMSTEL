@@ -57,6 +57,7 @@ rsconnect/
 # Source data sets and support files
 data/*/*
 !data/source_concepts/*
+!data/cql_concepts/*
 !data/mappings/*
 !data/whiterabbit/*
 !data/usagi/*

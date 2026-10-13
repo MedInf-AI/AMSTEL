@@ -269,6 +269,33 @@ load_data_tables <- function() {
     ams_schema = amstel_env$config$databases$amsterdamumcdb$schema
   )
 
+  # cql_concept: intermediate table with the concepts used in the CQL
+  # libraries, restricts the records transferred from stem_table into the CDM
+  # tables. Loaded from a csv file since SqlRender drops parts of very long
+  # IN (...) lists.
+  log_info("- cql_concept (intermediate table)")
+  sql <- load_sql('create_cql_concept_table.sql')
+  DatabaseConnector::renderTranslateExecuteSql(
+    progressBar = interactive(),
+    connection = conn,
+    sql = sql,
+    cdm_schema = amstel_env$config$databases$cdm$schema
+  )
+  cql_concepts <- readr::read_csv(
+    file = file.path('.', 'data', 'cql_concepts', 'cql_concepts.csv'), # TODO: amstel_env$config$data$cql_concepts
+    col_types = readr::cols(cdm_table = readr::col_character(),
+                            concept_id = readr::col_integer())
+  )
+  DatabaseConnector::insertTable(
+    progressBar = interactive(),
+    connection = conn,
+    tableName = paste0(amstel_env$config$databases$cdm$schema, ".cql_concept"),
+    data = cql_concepts,
+    dropTableIfExists = FALSE,
+    createTable = FALSE,
+    bulkLoad = FALSE
+  )
+
   # inserts records into the clinical data tables based on domain_id from
   # stem_table:
   # condition occurrence (domain_id = 19)
